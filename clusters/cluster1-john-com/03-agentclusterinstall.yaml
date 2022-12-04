@@ -1,0 +1,26 @@
+apiVersion: extensions.hive.openshift.io/v1beta1
+kind: AgentClusterInstall
+metadata:
+  name: cluster1-john-com
+  namespace: cluster1-john-com
+  annotations:
+    agent-install.openshift.io/install-config-overrides: '{"networking":{"networkType":"OVNKubernetes"}}'
+spec:
+  clusterDeploymentRef:
+    name: cluster1-john-com
+  imageSetRef:
+    name: openshift-v4.10.24
+  networking:
+    clusterNetwork:
+      - cidr: "10.128.0.0/14"
+        hostPrefix: 23
+    serviceNetwork:
+      - "172.30.0.0/16"
+    machineNetwork:
+      - cidr: "172.25.181.0/27"
+  apiVIP: 172.25.181.13
+  ingressVIP: 172.25.181.14
+  provisionRequirements:
+    controlPlaneAgents: 3
+    workerAgents: 0
+  sshPublicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC6J7nhSgR/mYTBB+QH/6gShkvKkTWhWDhNGVi1PhVkF ztphub"

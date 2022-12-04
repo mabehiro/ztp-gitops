@@ -1,0 +1,22 @@
+apiVersion: agent-install.openshift.io/v1beta1
+kind: InfraEnv
+metadata:
+  name: sno1-john-com
+  namespace: sno1-john-com
+  annotations:
+    argocd.argoproj.io/sync-options: Validate=false
+spec:
+  clusterRef:
+    name: sno1-john-com
+    namespace: sno1-john-com
+  sshAuthorizedKey: "CHANGEME"
+  additionalNTPSources:
+    - 2600:1700:4c0:800f:208:a2ff:fe12:4257
+  agentLabelSelector:
+    matchLabels:
+      cluster-name: sno1
+  pullSecretRef:
+    name: pull-secret
+  nmStateConfigLabelSelector:
+    matchLabels:
+      cluster-name: sno1

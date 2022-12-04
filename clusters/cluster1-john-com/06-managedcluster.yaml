@@ -1,0 +1,18 @@
+apiVersion: cluster.open-cluster-management.io/v1
+kind: ManagedCluster
+metadata:
+  name: cluster1-john-com
+  namespace: cluster1-john-com
+  labels:
+    name: "cluster1"
+    sno: "false"
+    usage: "production"
+    remote-cluster: "true"
+
+    # Labels for OpenShift Gitops
+    cluster.open-cluster-management.io/clusterset: "all-openshift-clusters"
+    vendor: "OpenShift"
+
+spec:
+  hubAcceptsClient: true
+  leaseDurationSeconds: 60

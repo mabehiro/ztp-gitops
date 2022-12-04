@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: bmc-secret
+  namespace: sno1-john-com
+stringData:
+  username: root
+  password: calvin
+...
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: sno1-john-com
+  namespace: sno1-john-com
+  labels:
+    infraenvs.agent-install.openshift.io: "sno1-john-com"
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/hostname: "sno1"
+spec:
+  online: true
+  bootMACAddress: "b8:cb:29:d9:2f:54"
+  rootDeviceHints:
+    deviceName: "/dev/sda"
+  bmc:
+    address: idrac-virtualmedia+https://[2600:1700:4c0:800f::2001]/redfish/v1/Systems/System.Embedded.1
+    credentialsName: bmc-secret
+    disableCertificateVerification: true

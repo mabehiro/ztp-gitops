@@ -1,0 +1,94 @@
+---
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: bmc-secret-node01
+  namespace: cluster1-john-com
+stringData:
+  username: root
+  password: Changeme
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: cluster1-node01
+  namespace: cluster1-john-com
+  labels:
+    infraenvs.agent-install.openshift.io: "cluster1-john-com"
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/hostname: "cluster1-node01"
+spec:
+  online: true
+  bootMACAddress:  d0:8e:79:f3:64:1e
+  automatedCleaningMode: metadata
+  rootDeviceHints:
+    deviceName: "/dev/sda"
+  bmc:
+    # https://docs.openstack.org/sushy-tools/latest/
+    address: idrac-virtualmedia+https://172.25.181.7/redfish/v1/Systems/System.Embedded.1
+    credentialsName: bmc-secret-node01
+    disableCertificateVerification: true
+---
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: bmc-secret-node02
+  namespace: cluster1-john-com
+stringData:
+  username: root
+  password: Changeme
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: cluster1-node02
+  namespace: cluster1-john-com
+  labels:
+    infraenvs.agent-install.openshift.io: "cluster1-john-com"
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/hostname: "cluster1-node02"
+spec:
+  online: true
+  bootMACAddress: d0:8e:79:f6:d9:f2
+  automatedCleaningMode: metadata
+  rootDeviceHints:
+    deviceName: "/dev/sda"
+  bmc:
+    address: idrac-virtualmedia+https://172.25.181.9/redfish/v1/Systems/System.Embedded.1
+    credentialsName: bmc-secret-node02
+    disableCertificateVerification: true
+---
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: bmc-secret-node03
+  namespace: cluster1-john-com
+stringData:
+  username: root
+  password: Changeme
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: cluster1-node03
+  namespace: cluster1-john-com
+  labels:
+    infraenvs.agent-install.openshift.io: "cluster1-john-com"
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/hostname: "cluster1-node03"
+spec:
+  online: true
+  bootMACAddress: b0:7b:25:d4:2c:30
+  automatedCleaningMode: metadata
+  rootDeviceHints:
+    deviceName: "/dev/sda"
+  bmc:
+    address: idrac-virtualmedia+https://172.25.181.11/redfish/v1/Systems/System.Embedded.1
+    credentialsName: bmc-secret-node03
+    disableCertificateVerification: true

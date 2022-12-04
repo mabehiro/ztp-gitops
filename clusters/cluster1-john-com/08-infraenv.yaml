@@ -1,0 +1,20 @@
+apiVersion: agent-install.openshift.io/v1beta1
+kind: InfraEnv
+metadata:
+  name: cluster1-john-com
+  namespace: cluster1-john-com
+  annotations:
+    argocd.argoproj.io/sync-options: Validate=false
+spec:
+  clusterRef:
+    name: cluster1-john-com
+    namespace: cluster1-john-com
+  sshAuthorizedKey: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC6J7nhSgR/mYTBB+QH/6gShkvKkTWhWDhNGVi1PhVkF ztphub'
+  agentLabelSelector:
+    matchLabels:
+      cluster-name: cluster1
+  pullSecretRef:
+    name: pull-secret
+  nmStateConfigLabelSelector:
+    matchLabels:
+      cluster-name: cluster1

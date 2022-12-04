@@ -1,0 +1,22 @@
+apiVersion: agent.open-cluster-management.io/v1
+kind: KlusterletAddonConfig
+metadata:
+  name: sno1-john-com
+  namespace: sno1-john-com
+spec:
+  applicationManager:
+    enabled: true
+  certPolicyController:
+    enabled: true
+  clusterLabels:
+    name: sno1
+    cloud: Baremetal
+    vendor: OpenShift
+  clusterName: sno1
+  clusterNamespace: sno1-john-com
+  iamPolicyController:
+    enabled: true
+  policyController:
+    enabled: true
+  searchCollector:
+    enabled: true

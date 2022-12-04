@@ -1,0 +1,23 @@
+apiVersion: extensions.hive.openshift.io/v1beta1
+kind: AgentClusterInstall
+metadata:
+  name: sno1-john-com
+  namespace: sno1-john-com
+  annotations:
+    agent-install.openshift.io/install-config-overrides: '{"networking":{"networkType":"OVNKubernetes"}}'
+spec:
+  clusterDeploymentRef:
+    name: sno1-john-com
+  imageSetRef:
+    name: openshift-v4.11.0
+  networking:
+    clusterNetwork:
+      - cidr: "fd01::/48"
+        hostPrefix: 64
+    serviceNetwork:
+      - "fd02::/112"
+    machineNetwork:
+      - cidr: "2600:1700:4c0:800f::/64"
+  provisionRequirements:
+    controlPlaneAgents: 1
+  sshPublicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxLsmU7suROe520RAqaqE+Xtmx0iIGpG0IFLKcduA3t kskels@redhat.com"

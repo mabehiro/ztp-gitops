@@ -1,0 +1,112 @@
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: cluster1-node01
+  namespace: cluster1-john-com
+  labels:
+    cluster-name: cluster1
+spec:
+  config:
+    interfaces:
+      - name: eno8303
+        type: ethernet
+        state: up
+        ipv4:
+          enabled: true
+          address:
+          - ip: 172.25.181.8
+            prefix-length: 27
+        ipv6:
+          enabled: false
+
+    dns-resolver:
+      config:
+        search:
+          - john.com
+        server:
+          - 192.168.50.92
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 172.25.181.1
+          next-hop-interface: eno8303
+          table-id: 254
+
+  interfaces:
+    - name: "eno8303"
+      macAddress: "d0:8e:79:f3:64:1e"
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: cluster1-node02
+  namespace: cluster1-john-com
+  labels:
+    cluster-name: cluster1
+spec:
+  config:
+    interfaces:
+      - name: eno8303
+        type: ethernet
+        state: up
+        ipv4:
+          enabled: true
+          address:
+          - ip: 172.25.181.10
+            prefix-length: 27
+        ipv6:
+          enabled: false
+    dns-resolver:
+      config:
+        search:
+          - john.com
+        server:
+          - 192.168.50.92
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 172.25.181.1
+          next-hop-interface: eno8303
+          table-id: 254
+
+  interfaces:
+    - name: "eno8303"
+      macAddress: "d0:8e:79:f6:d9:f2"
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: cluster1-node03
+  namespace: cluster1-john-com
+  labels:
+    cluster-name: cluster1
+spec:
+  config:
+    interfaces:
+      - name: eno8303
+        type: ethernet
+        state: up
+        ipv4:
+          enabled: true
+          address:
+          - ip: 172.25.181.12
+            prefix-length: 27
+        ipv6:
+          enabled: false
+    dns-resolver:
+      config:
+        search:
+          - john.com
+        server:
+          - 192.168.50.92
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 172.25.181.1
+          next-hop-interface: eno8303
+          table-id: 254
+
+  interfaces:
+    - name: "eno8303"
+      macAddress: "b0:7b:25:d4:2c:30"

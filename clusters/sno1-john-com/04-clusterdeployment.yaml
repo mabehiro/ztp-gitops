@@ -1,0 +1,23 @@
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  name: sno1-john-com
+  namespace: sno1-john-com
+spec:
+  baseDomain: john.com
+  clusterName: sno1
+  controlPlaneConfig:
+    servingCertificates: {}
+  installed: false
+  clusterInstallRef:
+    group: extensions.hive.openshift.io
+    kind: AgentClusterInstall
+    name: sno1-john-com
+    version: v1beta1
+  platform:
+    agentBareMetal:
+      agentSelector:
+        matchLabels:
+          cluster-name: "sno1"
+  pullSecretRef:
+    name: pull-secret

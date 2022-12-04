@@ -1,0 +1,24 @@
+apiVersion: agent.open-cluster-management.io/v1
+kind: KlusterletAddonConfig
+metadata:
+  name: cluster1-john-com
+  namespace: cluster1-john-com
+spec:
+  applicationManager:
+    argocdCluster: false
+    enabled: true
+  certPolicyController:
+    enabled: true
+  clusterLabels:
+    name: cluster1
+    cloud: Baremetal
+    vendor: OpenShift
+  clusterName: cluster1
+  clusterNamespace: cluster1-john-com
+  iamPolicyController:
+    enabled: true
+  policyController:
+    enabled: true
+  searchCollector:
+    enabled: true
+  version: 2.2.0
