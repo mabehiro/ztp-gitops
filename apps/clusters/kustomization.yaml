@@ -1,6 +1,6 @@
 resources:
 
-  # - sno1.john-com.yaml
-  # - sno2.john-com.yaml
-  - cluster1.john-com.yaml
+  # - sno1-john-com.yaml
+  # - sno2-john-com.yaml
+  - cluster1-john-com.yaml
 
